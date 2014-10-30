@@ -1,0 +1,63 @@
+#!/usr/bin/env perl
+
+use 5.014;
+use warnings;
+
+use App::Commando;
+
+my $p = App::Commando::program('qh');
+$p->version('0.000001');
+
+my $realms = $p->command('realms');
+$realms->action(sub {
+    my ($argv, $config) = @_;
+
+    say "realms list stub";
+});
+
+my $realm = $p->command('realm');
+$realm->option('id', 'id=s');
+$realm->action(sub {
+    my ($argv, $config) = @_;
+
+    my $arg = $argv->[0];
+
+    if ( $arg && $arg eq 'quests' ) {
+        say "realm's quests stub";
+    }
+    else {
+        say "realm info stub";
+    }
+});
+
+my $quests = $p->command('quests');
+$quests->option('player', 'player=s');
+$quests->option('self', '--self');
+$quests->action(sub {
+    my ($argv, $config) = @_;
+
+    if ( $config->{player} ) {
+        say "player's quests stub";
+    }
+    elsif ( $config->{self} ) {
+        say "my quests stub"
+    }
+});
+
+my $quest = $p->command('quest');
+$quest->option('id', 'id=s');
+$quest->option('title', 'title=s');
+$quest->action(sub {
+    my ($argv, $config) = @_;
+
+    my $arg = $argv->[0];
+
+    unless ( $arg ) {
+        say "quest info stub";
+    }
+    else {
+        say "$arg quest stub";
+    }
+});
+
+$p->go;

@@ -1,0 +1,13 @@
+qh realms                                   show all Questhub realms
+
+qh reaml --id <rid>                         show information about realm
+qh reaml quests --id <rid>                  show open quests for the specified realm
+
+qh quests --player <player>                 show open quests for the specified player
+qh quests --self                            show open quests for authenticated player
+
+qh quest --id <qid>                         show information about the quest
+qh quest new  --id <rid> --title <title>    create new quest
+qh quest claim --id <qid>                   claim points for the quest
+qh quest leave --id <qid>                   leave the quest
+qh quest abandon --id <qid>                 abandon the quest

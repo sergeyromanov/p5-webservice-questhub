@@ -1,0 +1,20 @@
+=pod
+
+=encoding UTF-8
+
+=head1 NAME
+
+WebService::Questhub ‒ interact with L<https://questhub.io>
+
+=head1 AUTHOR
+
+Sergey Romanov, C<sromanov@cpan.org>.
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright (C) 2014 by Sergey Romanov.
+
+This library is free software; you can redistribute it and/or modify
+it under the terms of the Artistic License version 2.0.
+
+=cut
