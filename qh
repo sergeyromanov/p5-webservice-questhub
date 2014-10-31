@@ -6,6 +6,7 @@ use lib 'lib';
 
 use App::Commando;
 
+use WebService::Questhub::Realm;
 use WebService::Questhub::Realms;
 
 my $p = App::Commando::program('qh');
@@ -32,7 +33,8 @@ $realm->action(sub {
         say "realm's quests stub";
     }
     else {
-        say "realm info stub";
+        my $reaml = WebService::Questhub::Realm->new->get(id => $config->{id});
+        say $reaml->{description};
     }
 });
 
