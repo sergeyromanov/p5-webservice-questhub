@@ -2,8 +2,11 @@
 
 use 5.014;
 use warnings;
+use lib 'lib';
 
 use App::Commando;
+
+use WebService::Questhub::Realms;
 
 my $p = App::Commando::program('qh');
 $p->version('0.000001');
@@ -12,7 +15,10 @@ my $realms = $p->command('realms');
 $realms->action(sub {
     my ($argv, $config) = @_;
 
-    say "realms list stub";
+    my $wq_result = WebService::Questhub::Realms->new->list;
+    while ( my $item = $wq_result->get_next ) {
+        say $item->{id};
+    }
 });
 
 my $realm = $p->command('realm');
