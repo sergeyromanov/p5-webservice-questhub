@@ -6,6 +6,7 @@ use lib 'lib';
 
 use App::Commando;
 
+use WebService::Questhub::Quest;
 use WebService::Questhub::Realm;
 use WebService::Questhub::Realms;
 
@@ -64,7 +65,11 @@ $quest->action(sub {
         say "quest info stub";
     }
     else {
-        say "$arg quest stub";
+        my $q = WebService::Questhub::Quest->new->request(
+            action => $arg,
+            %$config,
+        );
+        say $q->{_id};
     }
 });
 

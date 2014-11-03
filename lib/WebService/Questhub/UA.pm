@@ -13,15 +13,25 @@ sub query {
 
     my $ua = HTTP::Tiny::UA->new;
 
-    my $url = $endpoint . delete($args{path});
-    my $result;
-    if (delete $args{method} eq 'GET') {
+    my $url    = $endpoint . delete($args{path});
+    my $method = delete($args{method});
+    my $raw;
+    if ( $method eq 'GET' ) {
         my $param = $ua->www_form_urlencode(\%args);
-        my $raw   = $ua->get( $url . "?$param" )->content;
+        $raw      = $ua->get( $url . "?$param" )->content;
 
-        my $decoder = JSON::MaybeXS->new;
-        $result     = $decoder->decode($raw);
     }
+    elsif ( $method eq 'POST' ) {
+        my $conf  = $self->config;
+        my $param = $ua->www_form_urlencode({
+            api_login => $conf->{auth}{login},
+            api_token => $conf->{api}{token},
+        });
+        $raw   = $ua->post_form( $url . "?$param", \%args )->content;
+    }
+
+    my $decoder = JSON::MaybeXS->new;
+    my $result  = $decoder->decode($raw);
 
     return $result;
 }
