@@ -19,7 +19,7 @@ $realms->action(sub {
 
     my $wq_result = WebService::Questhub::Realms->new->list;
     while ( my $item = $wq_result->get_next ) {
-        say $item->{id};
+        say $item->id;
     }
 });
 
@@ -35,7 +35,7 @@ $realm->action(sub {
     }
     else {
         my $reaml = WebService::Questhub::Realm->new->get(id => $config->{id});
-        say $reaml->{description};
+        say $reaml->description;
     }
 });
 

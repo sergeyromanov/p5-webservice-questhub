@@ -12,6 +12,7 @@ sub list {
         method => 'GET',
         path   => '/api/realm',
     );
+    $res = [map { $self->_create_instance($_, 'Realm') } @$res];
 
     return WebService::Questhub::Result->_create_iterator($res);
 }
